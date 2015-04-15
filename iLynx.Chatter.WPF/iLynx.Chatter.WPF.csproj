@@ -86,11 +86,11 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\iLynx.Common.WPF\iLynx.Common.WPF.csproj">
+    <ProjectReference Include="..\..\iLynx.Common\iLynx.Common.WPF\iLynx.Common.WPF.csproj">
       <Project>{569111cc-d436-46e5-be9e-32b1bad1b950}</Project>
       <Name>iLynx.Common.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\iLynx.Common\iLynx.Common.csproj">
+    <ProjectReference Include="..\..\iLynx.Common\iLynx.Common\iLynx.Common.csproj">
       <Project>{1241AC19-9872-4126-8915-3A34919E1705}</Project>
       <Name>iLynx.Common</Name>
     </ProjectReference>

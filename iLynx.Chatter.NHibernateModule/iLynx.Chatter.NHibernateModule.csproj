@@ -109,11 +109,11 @@
       <Project>{ED0CB42A-7D74-4AE4-99FE-6EDC3B8C4143}</Project>
       <Name>iLynx.Chatter.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\iLynx.Common\iLynx.Common.csproj">
+    <ProjectReference Include="..\..\iLynx.Common\iLynx.Common\iLynx.Common.csproj">
       <Project>{1241AC19-9872-4126-8915-3A34919E1705}</Project>
       <Name>iLynx.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\iLynx.Configuration\iLynx.Configuration.csproj">
+    <ProjectReference Include="..\..\iLynx.Common\iLynx.Configuration\iLynx.Configuration.csproj">
       <Project>{A92DA3A7-612C-440A-A84C-F3C8A3E4D85A}</Project>
       <Name>iLynx.Configuration</Name>
     </ProjectReference>
