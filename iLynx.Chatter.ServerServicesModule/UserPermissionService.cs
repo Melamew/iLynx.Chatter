@@ -126,5 +126,10 @@ namespace iLynx.Chatter.ServerServicesModule
             existing = new Permission { PermissionIdentifier = permissionIdentifier };
             permissionsAdapter.SaveOrUpdate(existing);
         }
+
+        public IEnumerable<Permission> GetPermissions(User user)
+        {
+            
+        }
     }
 }

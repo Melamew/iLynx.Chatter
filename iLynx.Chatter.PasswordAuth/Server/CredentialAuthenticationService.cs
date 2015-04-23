@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using iLynx.Chatter.Infrastructure;
 using iLynx.Chatter.Infrastructure.Authentication;
@@ -157,6 +158,22 @@ namespace iLynx.Chatter.AuthenticationModule.Server
             {
                 User result;
                 return authenticatedClients.TryGetValue(clientId, out result) ? result : null;
+            }
+            finally { clientLock.ExitReadLock(); }
+        }
+
+        public Guid GetAuthenticatedId(User user)
+        {
+            clientLock.EnterReadLock();
+            try
+            {
+                Guid result;
+                var client = authenticatedClients.Values.FirstOrDefault(x => x.Username == user.Username);
+                if (client != null)
+                    result = client.UniqueId;
+                else
+                    return Guid.Empty;
+                return result;
             }
             finally { clientLock.ExitReadLock(); }
         }

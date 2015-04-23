@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="iLynx.Chatter.Server.UI.UserListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:iLynx.Common.WPF.Controls;assembly=iLynx.Common.WPF"
+             xmlns:server="clr-namespace:iLynx.Chatter.Server"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Users" Grid.Row="0"/>
+        <controls:TextBoxWithOverlay Grid.Row="1"
+                                     OverlayText="Search"
+                                     FontSize="16"
+                                     Text="{Binding SearchText}"/>
+        <ListView Grid.Row="2"
+                  ItemsSource="{Binding Users}"
+                  SelectedItem="{Binding SelectedUser}">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type server:UserInfo}">
+                    <Expander>
+                        <Expander.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Stretch="Uniform">
+                                    <Ellipse Width="10"
+                                         Height="10"
+                                         x:Name="StatusEllipse"
+                                         Fill="Red"/>
+                                </Viewbox>
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Username}"/>
+                            </Grid>
+                        </Expander.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Nick" Grid.Column="0"
+                                       x:Name="NickBlock"
+                                       Visibility="Collapsed"/>
+                            <TextBlock Text="{Binding NickName}" Grid.Column="1"
+                                       Grid.Row="0"
+                                       x:Name="NickText"
+                                       Visibility="Collapsed"/>
+                            <GroupBox Grid.Row="1"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="2"
+                                      Header="Permissions">
+                                <ListView Items="{Binding Permissions}"/>
+                            </GroupBox>
+                        </Grid>
+                    </Expander>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsOnline}" Value="True">
+                            <Setter TargetName="StatusEllipse" Property="Fill" Value="Green"/>
+                            <Setter TargetName="NickBlock" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="NickText" Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

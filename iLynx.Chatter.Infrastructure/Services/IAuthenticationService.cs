@@ -5,10 +5,15 @@ using iLynx.Networking.Interfaces;
 
 namespace iLynx.Chatter.Infrastructure.Services
 {
-    public interface IAuthenticationService<out TMessage, TKey> where TMessage : IKeyedMessage<TKey>
+    public interface IAuthenticationService
     {
-        bool IsClientAuthenticated(IClient<TMessage, TKey> client);
         bool IsClientAuthenticated(Guid clientId);
         User GetAuthenticatedUser(Guid clientId);
+        Guid GetAuthenticatedId(User user);
+    }
+
+    public interface IAuthenticationService<out TMessage, TKey> : IAuthenticationService where TMessage : IKeyedMessage<TKey>
+    {
+        bool IsClientAuthenticated(IClient<TMessage, TKey> client);
     }
 }

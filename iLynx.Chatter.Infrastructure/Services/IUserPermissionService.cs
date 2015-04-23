@@ -1,4 +1,5 @@
-﻿using iLynx.Chatter.Infrastructure.Domain;
+﻿using System.Collections.Generic;
+using iLynx.Chatter.Infrastructure.Domain;
 
 namespace iLynx.Chatter.Infrastructure.Services
 {
@@ -6,5 +7,6 @@ namespace iLynx.Chatter.Infrastructure.Services
     {
         bool HasPermission(User user, string permissionIdentifier);
         void CreatePermission(string permissionIdentifier);
+        IEnumerable<Permission> GetPermissions(User user);
     }
 }
